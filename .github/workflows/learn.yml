@@ -2,8 +2,8 @@ name: learn-github-actions
 on: push
 jobs:
   run-tests:
+    continue-on-error: false
     runs-on: windows-latest
     steps:
       - run: npm ci
       - run: npm test
-    continue-on-error: false
