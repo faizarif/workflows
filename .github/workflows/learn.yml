@@ -14,8 +14,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npm test
-        continue-on-error: true
-      - name: Fail on error
-        run: exit 1
-        if: ${{ failure() }}
+        run: |
+          if npm test; then
+            exit 0
+          else
+            exit 1
+          fi
