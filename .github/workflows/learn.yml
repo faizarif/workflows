@@ -1,9 +1,20 @@
-name: learn-github-actions
-on: push
+name: Run npm tests on push to master
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   run-tests:
-    continue-on-error: false
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - run: npm ci
-      - run: npm test
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+      - name: Fail on error
+        run: exit 1
+        if: ${{ failure() }}
