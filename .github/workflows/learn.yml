@@ -1,5 +1,5 @@
 name: learn-github-actions
-on: [push]
+on: push
 jobs:
   run-tests:
     runs-on: windows-latest
