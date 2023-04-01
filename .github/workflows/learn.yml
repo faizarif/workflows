@@ -1,22 +1,30 @@
-name: Run npm tests on push to master
+name: CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [ main ]
 
 jobs:
-  run-tests:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm ci
-      - name: Run tests
-        run: |
-          if npm test; then
-            exit 0
-          else
-            exit 1
-          fi
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+
+    - name: Set commit status
+      if: ${{ failure() }}
+      uses: peter-evans/create-pull-request@v3.11.1
+      with:
+        commit-message: "Tests failed"
+        commit-body: "The tests for this commit have failed."
+        branch: "test-failed"
+        base: "main"
+        title: "Tests failed"
+        token: ${{ secrets.GITHUB_TOKEN }}
