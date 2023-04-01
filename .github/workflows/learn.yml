@@ -1,3 +1,4 @@
+# Made a small change to run action.
 name: CI
 
 on:
