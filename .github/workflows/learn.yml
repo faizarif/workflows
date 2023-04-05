@@ -1,9 +1,8 @@
-# Made a small change to run action.
-name: CI
+name: My Workflow
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   test:
@@ -19,13 +18,12 @@ jobs:
     - name: Run tests
       run: npm test
 
-    - name: Set commit status
-      if: ${{ failure() }}
-      uses: peter-evans/create-pull-request@v4.2.4
-      with:
-        commit-message: "Tests failed"
-        commit-body: "The tests for this commit have failed."
-        branch: "test-failed"
-        base: "main"
-        title: "Tests failed"
-        token: ${{ secrets.GITHUB_TOKEN }}
+    # Add the following `if` statement to prevent the commit from being pushed if the job fails
+    - name: Only push on success
+      if: ${{ success() }}
+      run: |
+        git config --global user.name "vivekjoshi556"
+        git config --global user.email "vivekjoshi556@gmail.com"
+        git add .
+        git commit -m "Test passed"
+        git push
