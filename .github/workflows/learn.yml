@@ -15,8 +15,9 @@ jobs:
       - id: detect_changes
         run: |
           if [ -n "$(git diff --name-only HEAD^ HEAD package.json)" ]; then
-            echo "true" >> $GITHUB_ENV
+            echo "true"
           fi
+      - run: echo ${{ detect_changes.output }}
       - run: echo env
       - run: echo ${{ env.CHANGED }}
 
