@@ -17,7 +17,7 @@ jobs:
           if [ -n "$(git diff --name-only HEAD^ HEAD package.json)" ]; then
             echo "true"
           fi
-      - run: echo ${{ detect_changes.output }}
+      - run: echo ${{ steps.detect_changes.output }}
       - run: echo env
       - run: echo ${{ env.CHANGED }}
 
