@@ -63,26 +63,61 @@ Ouput:
     [key]: "[rule1] | [rule2] | [rule3]"
     ```
 
+- If name of the rule and it's parameters are separated by `:` and the parameters themselves are separated by `,`
+    
+    ```js
+    "name": "len:3,10" // Checks length of name is 3-10.
+    ```
+
 - If you want to change the name of the key when displaying error message you can pass the name you want as the last value when specifying rules.
     
     ```js
-    [key]: "[rule1] | [rule2] | <b>[name]</b>"
+    [key]: "[rule1] | [rule2] | [name]"
+    ```
+    
+    #### ** The new name must not match any rule.
+
+- If you want to change the name of the key the value of which is an object, you can pass in a __name property and specify the name you want to use.
+    
+    ```js
+    address: {
+        city: 'string|required|len:3,6',
+        state: 'string|required|len:3,8',
+        __name: "Address"
+    },
     ```
 
+    #### ** All the errors in any child will be referenced with respect to that name.
+    For eg. If the state's len property fails the name used will be 'Address.city' in the error message.
+
 ## Available Rules
-Type Checks:
+Type Rules:
 - array
 - boolean
 - json
 - string
 - number
 
-// Value Property Rules:
+Value Rules:
 - email: <br />
     Checks if the value is a valid email.
-- gt: 
-- gte
-- len
-- lt
-- lte
-- required
+- gt: <br />
+    Checks if the value is greater than the given number.
+- gte: <br />
+    Checks if the value is greater than or equal to the given number.
+- len: <br />
+    * Checks if the length is in given range.
+    * If a single value is given it is considered as lower limit.
+        ```js
+        "name": "len:3" // Length must be atleast 3 characters.
+        ```
+    * If 2 values are given 1st is considered lower and 2nd as upper limit.
+        ```js
+        "name": "len:3,6" // Length must be 3-6 characters.
+        ```
+- lt: <br />
+    Checks if the value is less than the given number.
+- lte: <br />
+    Checks if the value is less than or equal to the given number.
+- required: <br />
+    Checks if the value is the value is present & must not be null or undefined.
