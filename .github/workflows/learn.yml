@@ -13,14 +13,7 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
-
-  publish-npm:
-    needs: test
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && steps.check_changes.outputs.changed }}
-    steps:
-      - run: echo "Ran this ---------------------------------------------------------"
-
+  
   check_changes:
     runs-on: ubuntu-latest
     outputs:
@@ -34,3 +27,9 @@ jobs:
           else
             echo "::set-output name=changed::false"
           fi
+  publish-npm:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && steps.check_changes.outputs.changed }}
+    steps:
+      - run: echo "Ran this ---------------------------------------------------------"
