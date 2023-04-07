@@ -27,6 +27,7 @@ jobs:
           if [ -n "$(git diff --name-only HEAD^ HEAD package.json)" ]; then
             echo "true" >> $GITHUB_ENV
           fi
+      - run: echo ${{ env.CHANGED }}
 
   publish-npm:
     needs: [test, check_changes]
