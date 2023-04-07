@@ -56,6 +56,18 @@ Ouput:
 ```html
 [ 'name property was required but was not found.' ]
 ```
+## Creating Validator
+- Rules for a value are seperated by `|`.
+
+    ```js
+    [key]: "[rule1] | [rule2] | [rule3]"
+    ```
+
+- If you want to change the name of the key when displaying error message you can pass the name you want as the last value when specifying rules.
+    
+    ```js
+    [key]: "[rule1] | [rule2] | <b>[name]</b>"
+    ```
 
 ## Available Rules
 Type Checks:
