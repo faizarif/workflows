@@ -1,29 +1,36 @@
-name: My Workflow
-
-on:
+name: Publish NPM Package
+on: 
   push:
-    branches: [ master ]
-
+    branches: 'master'
+  
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm test
 
-    - name: Install dependencies
-      run: npm install
+  publish-npm:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && steps.check_changes.outputs.changed }}
+    steps:
+      - run: echo "Ran this ---------------------------------------------------------"
 
-    - name: Run tests
-      run: npm test
-
-    # Add the following `if` statement to prevent the commit from being pushed if the job fails
-    - name: Only push on success
-      if: ${{ success() }}
-      run: |
-        git config --global user.name "vivekjoshi556"
-        git config --global user.email "vivekjoshi556@gmail.com"
-        git add .
-        git commit -m "Test passed"
-        git push
+  check_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.detect_changes.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: detect_changes
+        run: |
+          if [ -n "$(git diff --name-only HEAD^ HEAD package.json)" ]; then
+            echo "::set-output name=changed::true"
+          else
+            echo "::set-output name=changed::false"
+          fi
