@@ -19,21 +19,37 @@ Once the constructor is imported you can create as many validator as you like an
 ## Examples
 
 ```js
-// Creating a new Validator.
-const userValidator = new Validator({
+// Rules validator should use.
+const rules = {
     name: 'string|required',
     address: {
-        city: 'string|required|len:3,6',
-        state: 'string|required|len:3,8',
-        _name: "Address"
+        city: 'string|required|len:3,8', 
+        state: 'string|required|len:3,8'
     },
-    age: 'required|number|Age',
-    dob: {
-        date: 'string|gte:1|lte:31',
-        month: 'string|gte:1|lte:12',
-        year: 'gte:1990|lte:2015',
-    },
-});
+};
 
+// Creating a new Validator.
+const userValidator = new Validator(rules);
 
+// Object to validate.
+let user = {
+    address: {
+        city: "Albany",
+        state: "NYK"
+    }
+}
+
+// Validate the object using the check() function of validator.
+let response = userValidator.check(user);
+
+// Check if the validation passed using passed property of the response.
+if(!response.passed) {
+    // Response's error property contians an array of all the errors.
+    console.log(err);
+}
+
+```
+Ouput:
+```html
+[ 'name property was required but was not found.' ]
 ```
