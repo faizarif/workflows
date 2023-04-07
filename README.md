@@ -1,4 +1,4 @@
-<h1 id = "checkerz" align="center"> Checkerz </h1>
+# Checkerz #
 A package for validating JS objects.
 
 ## Installation
@@ -59,3 +59,4 @@ Ouput:
 
 ## Available Rules
 [Project-Title](#checkerz)
+[About](#usage)
