@@ -16,20 +16,21 @@ jobs:
   
   check_changes:
     runs-on: ubuntu-latest
+    env:
+      CHANGED: false
     outputs:
-      changed: ${{ steps.detect_changes.outputs.changed }}
+      changed: ${{ env.CHANGED }}
     steps:
       - uses: actions/checkout@v3
       - id: detect_changes
         run: |
           if [ -n "$(git diff --name-only HEAD^ HEAD package.json)" ]; then
-            echo "::set-env name=changed::true"
-          else
-            echo "::set-env name=changed::false"
+            echo "true" >> $GITHUB_ENV
           fi
+
   publish-npm:
     needs: [test, check_changes]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && env.changed }}
+    if: ${{ needs.check_changes.outputs.changed == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:
       - run: echo "Ran this ---------------------------------------------------------"
