@@ -23,13 +23,13 @@ jobs:
       - id: detect_changes
         run: |
           if [ -n "$(git diff --name-only HEAD^ HEAD package.json)" ]; then
-            echo "::set-output name=changed::true"
+            echo "::set-env name=changed::true"
           else
-            echo "::set-output name=changed::false"
+            echo "::set-env name=changed::false"
           fi
   publish-npm:
     needs: [test, check_changes]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && needs.check_changes.outputs.changed }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && env.changed }}
     steps:
       - run: echo "Ran this ---------------------------------------------------------"
