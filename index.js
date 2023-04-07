@@ -1,3 +1,3 @@
-export default fun = (a, b) => {
+export fun = (a, b) => {
     return a + b;
 }
