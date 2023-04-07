@@ -1,4 +1,4 @@
-# Checkerz #
+# Checkerz
 A package for validating JS objects.
 
 ## Installation
@@ -58,5 +58,19 @@ Ouput:
 ```
 
 ## Available Rules
-[Project-Title](#checkerz)
-[About](#usage)
+Type Checks:
+- array
+- boolean
+- json
+- string
+- number
+
+// Value Property Rules:
+- email: <br />
+    Checks if the value is a valid email.
+- gt: 
+- gte
+- len
+- lt
+- lte
+- required
