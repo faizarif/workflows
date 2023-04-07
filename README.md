@@ -1,9 +1,12 @@
-<!-- <h1 align="center"> Checkerz </h1> -->
-# Checkerz
+<h1 id = "checkerz" align="center"> Checkerz </h1>
 A package for validating JS objects.
 
-## Usage
+## Installation
+```
+npm install checkerz
+```
 
+## Usage
 Importing the Validator Constructor
 
 ```js
@@ -53,3 +56,6 @@ Ouput:
 ```html
 [ 'name property was required but was not found.' ]
 ```
+
+## Available Rules
+[Project-Title](#checkerz)
