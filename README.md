@@ -203,7 +203,8 @@ Value Rules:
     - Since, we are using objects we have 2 method to reference a key in the object. 
         - Starting at top: To access from top start with a '.' and then traverse the object as you would with a dot notation. In the example below state is required phone.type = home. (Notice how it starts with a '.').
         - Starting at current level: Traverse the object as you would with a dot notation. (Notice that since it is at same level no '.' is required).
-        <br />
+        
+        
         ```js
         // Rules validator should use.
         const rules = {
