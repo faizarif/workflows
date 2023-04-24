@@ -204,6 +204,7 @@ Value Rules:
     - The values is required if a certain key matches some value. If the specified doesn't match the specified value then this becomes an optional field.
     - Since, we are using objects we have 2 method to reference a key in the object. 
         - Starting at top: To access from top start with a '.' and then traverse the object as you would with a dot notation. In the example below state is required phone.type = home. (Notice how it starts with a '.').
+
         - Starting at current level: Traverse the object as you would with a dot notation. (Notice that since it is at same level no '.' is required).
     <br />
 
