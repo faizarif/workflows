@@ -179,7 +179,7 @@ Value Rules:
     - Expects the value to be validated to be an Array or a String.
     - Checks if the length is in given range.
     - If a single value is given it is considered as lower limit.
-
+        - 
         ```js
         "name": "len:3" // Length must be atleast 3 characters.
         ```
