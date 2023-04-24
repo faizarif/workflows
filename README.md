@@ -104,43 +104,41 @@ Value Rules:
 - Accepted: <br />
     - Checks if the value is one of the following values: "1", 1, "True", true, "yes", "on".
     - Can be used for checkboxes like for terms & conditions.
-    <br />
-    
-    ```js
-        // Validator Rules:
-        const rules = {
-            "tnc": "accepted"
-        };
-    ```
+        ```js
+            // Validator Rules:
+            const rules = {
+                "tnc": "accepted"
+            };
+        ```
 
 - After: <br />
     - Checks if the a particular date is after a given date.
     - Can be used to check if user is not giving an invalid date.
-    ```js
-    // Validator Rules:
-    const rules = {
-        "dob": "after:2023/07/01",
-    };
-    ```
+        ```js
+        // Validator Rules:
+        const rules = {
+            "dob": "after:2023/07/01",
+        };
+        ```
 
 - AfterOrEqual: <br />
     - Similar to after but also returns true for same day.
-    ```js
-    // Validator Rules:
-    const rules = {
-        "dob": "afterOrEqual:2023/07/01",
-    };
-    ```
+        ```js
+        // Validator Rules:
+        const rules = {
+            "dob": "afterOrEqual:2023/07/01",
+        };
+        ```
 
 - Before: <br />
     - Checks if the a particular date is before a given date.
     - Can be used to check age limit based on DOB.
-    ```js
-    // Validator Rules:
-    const rules = {
-        "dob": "before:2023/07/01",
-    };
-    ```
+        ```js
+        // Validator Rules:
+        const rules = {
+            "dob": "before:2023/07/01",
+        };
+        ```
 
 - BeforeOrEqual: <br />
     - Similar to before but also returns true for same day.
@@ -148,20 +146,20 @@ Value Rules:
 - confirmed: <br />
     - Looks for a key named "{current_key_name}_confirmed" in the object at same level, & sees if the values match.
     - Can be used for passwords.
-    ```js
-    // Validator Rules:
-    const rules = {
-        "email": "email",
-        "password": "string|confirmed"
-    };
+        ```js
+        // Validator Rules:
+        const rules = {
+            "email": "email",
+            "password": "string|confirmed"
+        };
 
-    // Object to validate.
-    let user = {
-        "email": "test@checkerz.com",
-        "password": "password",
-        "password_confirmed": "password"
-    };
-    ```
+        // Object to validate.
+        let user = {
+            "email": "test@checkerz.com",
+            "password": "password",
+            "password_confirmed": "password"
+        };
+        ```
 
 - email: <br />
     Checks if the value is a valid email.
@@ -199,19 +197,19 @@ Value Rules:
     - Since, we are using objects we have 2 method to reference a key in the object. 
         - Starting at top: To access from top start with a '.' and then traverse the object as you would with a dot notation. In the example below state is required phone.type = home. (Notice how it starts with a '.').
         - Starting at current level: Traverse the object as you would with a dot notation. (Notice that since it is at same level no '.' is required).
-        ```js
-        // Rules validator should use.
-        const rules = {
-            "person": {
-                "name": "string|required",
-                "address": {
-                    "state": "string|requiredIf:.phone.type=home",
-                    "zip": "string|requiredIf:state=NY"
+            ```js
+            // Rules validator should use.
+            const rules = {
+                "person": {
+                    "name": "string|required",
+                    "address": {
+                        "state": "string|requiredIf:.phone.type=home",
+                        "zip": "string|requiredIf:state=NY"
+                    }
+                },
+                "phone": {
+                    "number": "string|required",
+                    "type": "string|required"
                 }
-            },
-            "phone": {
-                "number": "string|required",
-                "type": "string|required"
-            }
-        };
-        ```
+            };
+            ```
