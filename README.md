@@ -183,6 +183,7 @@ Value Rules:
         ```js
         "name": "len:3" // Length must be atleast 3 characters.
         ```
+        
     - If 2 values are given 1st is considered lower and 2nd as upper limit.
     
         ```js
