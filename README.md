@@ -176,14 +176,14 @@ Value Rules:
     Checks if the value is greater than or equal to the given number.
 
 - len: <br />
-    * Expects the value to be validated to be an Array or a String.
-    * Checks if the length is in given range.
-    * If a single value is given it is considered as lower limit.
+    - Expects the value to be validated to be an Array or a String.
+    - Checks if the length is in given range.
+    - If a single value is given it is considered as lower limit.
 
         ```js
         "name": "len:3" // Length must be atleast 3 characters.
         ```
-    * If 2 values are given 1st is considered lower and 2nd as upper limit.
+    - If 2 values are given 1st is considered lower and 2nd as upper limit.
     
         ```js
         "name": "len:3,6" // Length must be 3-6 characters.
