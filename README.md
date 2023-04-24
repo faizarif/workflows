@@ -59,33 +59,33 @@ Ouput:
 ## Creating Validator
 - Rules for a value are seperated by `|`.
 
-    ```js
-    [key]: "[rule1] | [rule2] | [rule3]"
-    ```
+        ```js
+        [key]: "[rule1] | [rule2] | [rule3]"
+        ```
 
 - If name of the rule and it's parameters are separated by `:` and the parameters themselves are separated by `,`
     
-    ```js
-    "name": "len:3,10" // Checks length of name is 3-10.
-    ```
+        ```js
+        "name": "len:3,10" // Checks length of name is 3-10.
+        ```
 
 - If you want to change the name of the key when displaying error message you can pass the name you want as the last value when specifying rules.
     
-    ```js
-    [key]: "[rule1] | [rule2] | [name]"
-    ```
+        ```js
+        [key]: "[rule1] | [rule2] | [name]"
+        ```
     
     #### ** The new name must not match any rule.
 
 - If you want to change the name of the key the value of which is an object, you can pass in a __name property and specify the name you want to use.
     
-    ```js
-    address: {
-        city: "string|required|len:3,6",
-        state: "string|required|len:3,8",
-        __name: "Address"
-    },
-    ```
+        ```js
+        address: {
+            city: "string|required|len:3,6",
+            state: "string|required|len:3,8",
+            __name: "Address"
+        },
+        ```
 
     #### ** All the errors in any child will be referenced with respect to that name.
     For eg. If the state's len property fails the name used will be 'Address.city' in the error message.
@@ -206,19 +206,19 @@ Value Rules:
         - Starting at top: To access from top start with a '.' and then traverse the object as you would with a dot notation. In the example below state is required phone.type = home. (Notice how it starts with a '.').
         - Starting at current level: Traverse the object as you would with a dot notation. (Notice that since it is at same level no '.' is required).
             
-            ```js
-            // Rules validator should use.
-            const rules = {
-                "person": {
-                    "name": "string|required",
-                    "address": {
-                        "state": "string|requiredIf:.phone.type=home",
-                        "zip": "string|requiredIf:state=NY"
-                    }
-                },
-                "phone": {
-                    "number": "string|required",
-                    "type": "string|required"
+        ```js
+        // Rules validator should use.
+        const rules = {
+            "person": {
+                "name": "string|required",
+                "address": {
+                    "state": "string|requiredIf:.phone.type=home",
+                    "zip": "string|requiredIf:state=NY"
                 }
-            };
-            ```
+            },
+            "phone": {
+                "number": "string|required",
+                "type": "string|required"
+            }
+        };
+        ```
