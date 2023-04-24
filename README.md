@@ -179,14 +179,15 @@ Value Rules:
     - Expects the value to be validated to be an Array or a String.
     - Checks if the length is in given range.
     - If a single value is given it is considered as lower limit.
-            ```js
-            "name": "len:3" // Length must be atleast 3 characters.
-            ```
+
+        ```js
+        "name": "len:3" // Length must be atleast 3 characters.
+        ```
     - If 2 values are given 1st is considered lower and 2nd as upper limit.
     
-            ```js
-            "name": "len:3,6" // Length must be 3-6 characters.
-            ```
+        ```js
+        "name": "len:3,6" // Length must be 3-6 characters.
+        ```
 
 - lt: <br />
     Checks if the value is less than the given number.
