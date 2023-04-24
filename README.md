@@ -104,7 +104,7 @@ Value Rules:
 - Accepted: <br />
     - Checks if the value is one of the following values: "1", 1, "True", true, "yes", "on".
     - Can be used for checkboxes like for terms & conditions.
-    
+<br />
     ```js
         // Validator Rules:
         const rules = {
