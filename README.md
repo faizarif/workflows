@@ -207,19 +207,19 @@ Value Rules:
         - Starting at current level: Traverse the object as you would with a dot notation. (Notice that since it is at same level no '.' is required).
     <br />
 
-    ```js
-    // Rules validator should use.
-    const rules = {
-        "person": {
-            "name": "string|required",
-            "address": {
-                "state": "string|requiredIf:.phone.type=home",
-                "zip": "string|requiredIf:state=NY"
+        ```js
+        // Rules validator should use.
+        const rules = {
+            "person": {
+                "name": "string|required",
+                "address": {
+                    "state": "string|requiredIf:.phone.type=home",
+                    "zip": "string|requiredIf:state=NY"
+                }
+            },
+            "phone": {
+                "number": "string|required",
+                "type": "string|required"
             }
-        },
-        "phone": {
-            "number": "string|required",
-            "type": "string|required"
-        }
-    };
-    ```
+        };
+        ```
