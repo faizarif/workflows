@@ -16,4 +16,4 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ env }}
+      - run: env
