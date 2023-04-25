@@ -22,5 +22,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo needs.test1.curr_version
-      - run: echo needs.test1.latest_version
+      - run: echo ${{ needs.test1.curr_version }} 
+      - run: echo ${{ needs.test1.latest_version }}
