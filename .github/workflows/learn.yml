@@ -26,5 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ needs.check-versions.result == 'success' && needs.check-versions.outputs.current_version == needs.check-versions.outputs.lodash_version }}
     steps:
+      - run: echo ${{ needs.check-versions.outputs.current_version }}
+      - run: echo ${{ needs.check-versions.outputs.lodash_version }}
       - name: Run Job
         run: echo "got through"
