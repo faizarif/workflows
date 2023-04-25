@@ -4,7 +4,7 @@ on:
     branches: 'master'
   
 jobs:
-  check_changes:
+  test1:
     runs-on: ubuntu-latest
     env:
       CHANGED: false
@@ -21,9 +21,11 @@ jobs:
       - run: echo env
       - run: echo ${{ env.CHANGED }}
 
-  publish-npm:
-    needs: check_changes
+  test2:
+    needs: test1
     runs-on: ubuntu-latest
-    if: ${{ needs.check_changes.outputs.changed == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:
-      - run: echo "Ran this ---------------------------------------------------------"
+      - run: echo github
+      - run: sudo apt-get install jq
+      - run: jq .version package.json
+      - run: echo "Actual Version Present:" && npm view lodash version
