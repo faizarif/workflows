@@ -23,9 +23,9 @@ jobs:
         
       - name: Set Environment File
         run: |
-          steps.step3.outputs.curr_version >> $GITHUB_ENV
-          steps.step4.outputs.lodash_veresion >> $GITHUB_ENV
-
+          echo steps.step3.outputs.curr_version
+          echo "curr_version=${{ steps.step3.outputs.curr_version }}" >> $GITHUB_ENV
+          echo "lodash_veresion=${{ steps.step3.outputs.curr_version }}" >> $GITHUB_ENV
 
   compare-versions:
     needs: check-versions
