@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     # Map a step output to a job output
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}
+      output1: ${{ steps.step1.outputs.output1 }}
+      output2: ${{ steps.step2.outputs.output2 }}
     steps:
       - uses: actions/checkout@v3
       - id: step1
@@ -19,8 +19,8 @@ jobs:
       - run: sudo apt-get install jq
       - id: step2
         run: jq -r .version package.json
-      - run: echo ${{ steps.step1.outputs }}
-      - run: echo ${{ steps.step2.outputs }}
+      - run: echo ${{ steps.step1.outputs.output1 }}
+      - run: echo ${{ steps.step2.outputs.output2 }}
   job2:
     runs-on: ubuntu-latest
     needs: job1
