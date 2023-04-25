@@ -16,10 +16,16 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Get Current Version
-        run: echo "::set-output name=current_version::$(jq -r '.version' package.json)"
+        run: echo "::set-env name=CURRENT_VERSION::$(jq -r '.version' package.json)"
 
       - name: Get Lodash Version
-        run: echo "::set-output name=lodash_version::$(npm view lodash version)"
+        run: echo "::set-env name=LODASH_VERSION::$(npm view lodash version)"
+        
+      - name: Set Environment File
+        run: |
+          echo "CURRENT_VERSION=${{ steps.current-version.outputs.CURRENT_VERSION }}" >> $GITHUB_ENV
+          echo "LODASH_VERSION=${{ steps.lodash-version.outputs.LODASH_VERSION }}" >> $GITHUB_ENV
+
 
   compare-versions:
     needs: check-versions
