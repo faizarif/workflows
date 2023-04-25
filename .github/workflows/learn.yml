@@ -9,17 +9,13 @@ jobs:
   check-versions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        
-      - name: Install jq
-        run: sudo apt-get install jq
+      - uses: actions/checkout@v3
+      
+      - run: sudo apt-get install jq
 
-      - name: Get Current Version
-        run: jq -r '.version' package.json
+      - run: jq -r '.version' package.json
 
-      - name: Get Lodash Version
-        run: npm view lodash version
+      - run: npm view lodash version
         
       - name: Set Environment File
         run: |
