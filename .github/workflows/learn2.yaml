@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "MY_VARIABLE=some_value" >> $GITHUB_ENV
+      - run: echo $MY_VARIABLE
 
   job2:
     needs: job1
