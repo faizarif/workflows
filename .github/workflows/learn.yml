@@ -6,17 +6,8 @@ on:
 jobs:
   test1:
     runs-on: ubuntu-latest
-    env:
-      CHANGED: false
-    outputs:
-      changed: ${{ env.CHANGED }}
     steps:
       - uses: actions/checkout@v3
-
-  test2:
-    needs: test1
-    runs-on: ubuntu-latest
-    steps:
       - run: echo github
       - run: sudo apt-get install jq
       - run: ls
