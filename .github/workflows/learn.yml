@@ -1,26 +1,27 @@
-name: Publish NPM Package
-on: 
+name: Check Version
+
+on:
   push:
-    branches: 'master'
-  
+    branches:
+      - main
+
 jobs:
-  test1:
+  check-versions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - run: sudo apt-get install jq
-      - run: jq .version package.json
-      - run: npm view lodash version
-    outputs:
-      curr_version: ${{ jq.version package.json }}
-      latest_version: ${{ npm view lodash version }}
-  
-  test2:
-    needs: test1
-    if: needs.test1.curr_version == needs.test1.latest_version
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Get Current Version
+        run: echo "::set-output name=current_version::$(jq -r '.version' package.json)"
+
+      - name: Get Lodash Version
+        run: echo "::set-output name=lodash_version::$(npm view lodash version)"
+
+  compare-versions:
+    needs: check-versions
     runs-on: ubuntu-latest
+    if: ${{ needs.check-versions.result == 'success' && needs.check-versions.outputs.current_version == needs.check-versions.outputs.lodash_version }}
     steps:
-      - uses: actions/checkout@v3
-      - run: echo ${{ needs.test1.curr_version }} 
-      - run: echo ${{ needs.test1.latest_version }}
+      - name: Run Job
+        run: echo "got through"
