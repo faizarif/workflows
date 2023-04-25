@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo github
       - run: sudo apt-get install jq
       - run: ls
-      - run: jq .version package.json
-      - run: echo "Actual Version Present:" && npm view lodash version
+      - if: jq.version package.json === npm view lodash version
+      - run: echo "Came through"
