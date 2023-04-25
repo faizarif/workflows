@@ -12,14 +12,6 @@ jobs:
       changed: ${{ env.CHANGED }}
     steps:
       - uses: actions/checkout@v3
-      - id: detect_changes
-        run: |
-          if [ -n "$(git diff --name-only HEAD^ HEAD package.json)" ]; then
-            echo "true"
-          fi
-      - run: echo ${{ steps.detect_changes.output }}
-      - run: echo env
-      - run: echo ${{ env.CHANGED }}
 
   test2:
     needs: test1
@@ -27,5 +19,6 @@ jobs:
     steps:
       - run: echo github
       - run: sudo apt-get install jq
+      - run: ls
       - run: jq .version package.json
       - run: echo "Actual Version Present:" && npm view lodash version
