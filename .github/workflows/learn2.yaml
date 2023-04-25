@@ -19,6 +19,8 @@ jobs:
       - run: sudo apt-get install jq
       - id: step2
         run: jq -r .version package.json
+      - run: echo ${{ steps.step1 }}
+      - run: echo ${{ steps.step1.outputs }}
       - run: echo ${{ steps.step1.outputs.test }}
       - run: echo ${{ steps.step2.outputs.test }}
   job2:
