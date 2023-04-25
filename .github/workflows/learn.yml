@@ -13,8 +13,8 @@ jobs:
       - run: jq .version package.json
       - run: npm view lodash version
     outputs:
-      curr_version: jq.version package.json
-      latest_version: npm view lodash version
+      curr_version: ${{ jq.version package.json }}
+      latest_version: ${{ npm view lodash version }}
   
   test2:
     needs: test1
