@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: step1
-        run: npm view checkerz version
-      - run: sudo apt-get install jq
+        run: npm view checkerz version | echo
+      - run: sudo apt-get install jq | echo
       - id: step2
         run: jq -r .version package.json
       - run: echo ${{ steps.step1.outputs.output1 }}
