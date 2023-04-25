@@ -23,7 +23,7 @@ jobs:
         
       - name: Set Environment File
         run: |
-          echo steps.step3.outputs.curr_version
+          echo ${{ steps.step3.outputs.curr_version }}
           echo "curr_version=${{ steps.step3.outputs.curr_version }}" >> $GITHUB_ENV
           echo "lodash_veresion=${{ steps.step3.outputs.curr_version }}" >> $GITHUB_ENV
 
