@@ -16,9 +16,9 @@ jobs:
         run: npm view checkerz version | echo
       - run: sudo apt-get install jq
       - id: step2
-        run: jq -r .version package.json | echo
+        run: echo "curr_version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
       - run: echo ${{ steps.step1.outputs.output1 }}
-      - run: echo ${{ steps.step2.outputs.output2 }}
+      - run: echo ${{ steps.step2.outputs.curr_version }}
     outputs:
       output1: ${{ steps.step1.outputs.output1 }}
       output2: ${{ steps.step2.outputs.output2 }}
