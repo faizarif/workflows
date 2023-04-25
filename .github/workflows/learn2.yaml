@@ -17,11 +17,11 @@ jobs:
       - run: sudo apt-get install jq
       - id: step2
         run: echo "lodash_version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
-      - run: echo ${{ steps.step1.outputs.lodash_version }}
-      - run: echo ${{ steps.step2.outputs.curr_version }}
+      - run: echo ${{ steps.step1.outputs.curr_version }}
+      - run: echo ${{ steps.step2.outputs.lodash_version }}
     outputs:
-      output1: ${{ steps.step1.outputs.lodash_version }}
-      output2: ${{ steps.step2.outputs.curr_version }}
+      output1: ${{ steps.step1.outputs.curr_version }}
+      output2: ${{ steps.step2.outputs.lodash_version }}
   
   job2:
     runs-on: ubuntu-latest
