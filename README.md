@@ -220,7 +220,7 @@ Value Rules:
 
 - present: <br />
     - The key must be present. The value can be anything undefined, null or something else.
-
+    <br />
     > This is a conflicting rule with required & requiredIf which means while using one you cannot use the other one.
 
 - required: <br />
@@ -232,7 +232,7 @@ Value Rules:
     - Conditional version of required. 
     - The values is required if a certain key matches some value. If the specified doesn't match the specified value then this becomes an optional field.
     - The rules for accessing the key to check value are specified here.
-
+    <br />
     > This is a conflicting rule with present & required which means while using one you cannot use the other one.
 
 ## Rules to Access Keys During Validation:
