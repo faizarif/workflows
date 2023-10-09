@@ -1,6 +1,8 @@
 # Checkerz
 A package for validating JS objects motivated by Validators in [Lararvel framework](http://laravel.com).
 
+[![Vivek's GitHub stats](https://github-readme-stats.vercel.app/api?username=vivekjoshi556)](https://github.com/anuraghazra/github-readme-stats)
+
 ## Installation
 ```
 npm install checkerz
